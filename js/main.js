@@ -9,9 +9,17 @@ var avatarUrl = "https://lh3.googleusercontent.com/-_wSkui7ZO0Y/AAAAAAAAAAI/AAAA
 var messages = {};
 
 $(document).ready(function () {
+	attemptLogin();
 	renderTemplate();
 	setupMessageLoader();
 });
+
+function attemptLogin() {
+	var user = root.getAuth();
+	if (user) {
+		loginWithAuthData(user);
+	}
+}
 
 function setupMessageLoader() {
 	chatRoom.on("value", function (snapshot) { // anytime there's an update
